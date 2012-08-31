@@ -1,14 +1,18 @@
 \documentclass{bioinfo}
-\copyrightyear{2005}
-\pubyear{2005}
+\copyrightyear{2012}
+\pubyear{2012}
 
 \begin{document}
 \firstpage{1}
 
-\title[short Title]{This is a title}
-\author[Sample \textit{et~al}]{Corresponding Author\,$^{1,*}$, Co-Author\,$^{2}$ and Co-Author\,$^2$\footnote{to whom correspondence should be addressed}}
-\address{$^{1}$Department of XXXXXXX, Address XXXX etc.\\
-$^{2}$Department of XXXXXXXX, Address XXXX etc.}
+\title[short Title]{A Timed String Biological Motif comparison of Biopython, 
+Motility and Tamo}
+\author[Sample \textit{et~al}]{Philip Trosko\,$^{1}$, 
+Eric Macdonald\,$^{2}$ 
+and Titus Brown\,$^2$\footnote{to whom correspondence should be addressed}}
+\address{$^{1}$Trosko's Consulting and Programming, 
+1630 Sylvan Glen, Okemos, MI, 48864.\\
+$^{2}$Department of Molecular Genetics, Michigan State University, 48823.}
 
 \history{Received on XXXXX; revised on XXXXX; accepted on XXXXX}
 
@@ -19,168 +23,151 @@ $^{2}$Department of XXXXXXXX, Address XXXX etc.}
 \begin{abstract}
 
 \section{Motivation:}
-Text Text Text  Text Text Text Text Text Text Text Text
-Text  Text Text Text Text Text Text Text Text Text  Text Text Text Text Text Text Text Text Text  Text Text Text Text Text Text Text Text Text  Text Text Text Text Text Text Text Text Text  Text Text Text Text Text Text Text Text Text  Text Text Text Text Text.
+When doing a google search of motif searching routines for biological 
+sequences one easily finds the routines: Biopython, Motility, and Tamo.  
+This paper gives a brief comparison of the routines in doing exact matching, 
+IUPAC matching and PAM matrix positional weighting calculations.
 
 \section{Results:}
-Text  Text Text Text Text Text Text Text Text Text  Text Text Text Text Text Text Text Text Text  Text Text Text Text Text Text Text Text Text  Text Text Text Text Text Text
+All three routines produced consistent matching results.  
+The documentation for all routines allowed for the construction and running of
+our tests in python.
+When doing exact matching, IUPAC matching and PAM weighted matches 
+Motility is almost as fast as doing hard coded searches in Python, 
+while Biopython and Tamo run quite a bit slower.  
 
 \section{Availability:}
-Text  Text Text Text Text Text Text Text Text Text  Text Text Text Text Text Text Text Text Text  Text Text Text Text Text Text Text Text Text  Text
-
-\section{Contact:} \href{name@bio.com}{name@bio.com}
+All three routines are available online, 
+and can be downloaded and compiled by a person with some sophistication 
+using Git, ftp, make and python.
+\section{Contact:} \href{brown@msu.edu}{brown@msu.edu}
 \end{abstract}
 
 \section{Introduction}
-
-Text Text Text Text Text Text  Text Text Text Text Text Text Text Text Text  Text Text Text Text Text Text. Figure~\ref{fig:01} shows that the above method  Text Text Text Text  Text Text Text Text Text Text  Text Text.  \citep{Bag01} wants to know about …… text follows.
+The field of string searching usually falls in the discipline of 
+Computer Science.  Usually we refer to a query q of length m and all the
+offsets of q that lie on a text of length n, where n is usually 
+much longer than m.
+% Figure~\ref{eq:01} follows.
 
 \begin{equation}
-\sum x+ y =Z\label{eq:01}
+ q[m] \rightarrow t[n]\label{eq:01}
 \end{equation}
 
 
+% TODO: Either embed caption in a fake figure with equation in math mode.
+%	Or else don't use captions with equations.
+% Equation~(\ref{eq:01})
+%\caption{A query of length m querried against a text of length n.}. \citealp{Knuth65} 
+
+Figure~\ref{eq:02} follows.
+\begin{equation}
+  \sum_{i=1}^{n} \sum_{j=1}^{m} W_i (q[j], t[i+j]),   O(m*n)\label{eq:02}
+\end{equation}
 
 
+% Equation~(\ref{eq:02}) \caption{The weight W of an offset i in t between q and t }.  \citealp{Sanko65} 
 
 
 \section{Approach}
-
-Equation~(\ref{eq:01}) Text Text Text Text Text Text  Text Text Text Text Text Text Text Text Text  Text Text Text Text Text Text. Figure \ref{fig:02} shows that the above method  Text Text Text Text  Text Text Text Text Text Text  Text Text.  \citealp{Boffelli03} might want to know about  text text text text ……
-
+Our approach was to dowload Biopython, Motility and Tamo all on to 
+the same machine, and run them using the same queries and the same domain data.
+Once running we furthermore for reproducibility made our data run in scripts
+and (will) ran these scripts under similar conditions on the Amazon cluster.
 
 \begin{methods}
 \section{Methods}
-
-Text Text Text Text Text Text  Text Text Text Text Text Text Text Text Text  Text Text Text Text Text Text. Figure \ref{fig:02} shows that the above method  Text Text Text Text  Text Text Text Text Text Text  Text Text.  \citealp{Boffelli03} might want to know about  text text text text
-Text Text Text Text Text Text  Text Text Text Text Text Text Text Text Text  Text Text Text Text Text Text. Figure \ref{fig:02} shows that the above method  Text Text Text Text  Text Text Text Text Text Text  Text Text.  \citealp{Boffelli03} might want to know about  text text text text
-Text Text Text Text Text Text  Text Text Text Text Text Text Text Text Text  Text Text Text Text Text Text. Figure \ref{fig:02} shows that the above method  Text Text Text Text  Text Text Text Text Text Text  Text Text.  \citealp{Boffelli03} might want to know about  text text text text
-
+Our method involved dividing the Motif queries into three groups:, 
 \begin{itemize}
-\item for bulleted list, use itemize
-\item for bulleted list, use itemize
-\item for bulleted list, use itemize
+\item Exact matching,
+\item IUPAC matching,
+\item PAM weight matrix matching.  
 \end{itemize}
-
-
-
-Text Text Text Text Text Text  Text Text Text Text Text Text Text Text Text  Text Text Text Text Text Text. Figure \ref{fig:02} shows that the above method  Text Text Text Text  Text Text Text Text Text Text  Text Text.  \citealp{Boffelli03} might want to know about  text text text text
-Text Text Text Text Text Text  Text Text Text Text Text Text Text Text Text  Text Text Text Text Text Text. Figure \ref{fig:02} shows that the above method  Text Text Text Text  Text Text Text Text Text Text  Text Text.  \citealp{Boffelli03} might want to know about  text text text text
-Text Text Text Text Text Text  Text Text Text Text Text Text Text Text Text  Text Text Text Text Text Text. Figure \ref{fig:02} shows that the above method  Text Text Text Text  Text Text Text Text Text Text  Text Text.  \citealp{Boffelli03} might want to know about  text text text text
-Text Text Text Text Text Text  Text Text Text Text Text Text Text Text Text  Text Text Text Text Text Text. Figure \ref{fig:02} shows that the above method  Text Text Text Text  Text Text Text Text Text Text  Text Text.  \citealp{Boffelli03} might want to know about  text text text text
-Text Text Text Text Text Text  Text Text Text Text Text Text Text Text Text  Text Text Text Text Text Text.
-
-
-Text Text Text Text Text Text  Text Text Text Text Text Text Text Text Text  Text Text Text Text Text Text. Figure \ref{fig:02} shows that the above method  Text Text Text Text  Text Text Text Text Text Text  Text Text.  \citealp{Boffelli03} might want to know about  text text text text
-Text Text Text Text Text Text  Text Text Text Text Text Text Text Text Text  Text Text Text Text Text Text. Figure \ref{fig:02} shows that the above method  Text Text Text Text  Text Text Text Text Text Text  Text Text.  \citealp{Boffelli03} might want to know about  text text text text
-Text Text Text Text Text Text  Text Text Text Text Text Text Text Text Text  Text Text Text Text Text Text. Figure \ref{fig:02} shows that the above method  Text Text Text Text  Text Text Text Text Text Text  Text Text.  \citealp{Boffelli03} might want to know about  text text text text
-
-
-
-Text Text Text Text Text Text  Text Text Text Text Text Text Text Text Text  Text Text Text Text Text Text. Figure \ref{fig:02} shows that the above method  Text Text Text Text  Text Text Text Text Text Text  Text Text.  \citealp{Boffelli03} might want to know about  text text text text
-Text Text Text Text Text Text  Text Text Text Text Text Text Text Text Text  Text Text Text Text Text Text. Figure \ref{fig:02} shows that the above method  Text Text Text Text  Text Text Text Text Text Text  Text Text.  \citealp{Boffelli03} might want to know about  text text text text
-Text Text Text Text Text Text  Text Text Text Text Text Text Text Text Text  Text Text Text Text Text Text. Figure \ref{fig:02} shows that the above method  Text Text Text Text  Text Text Text Text Text Text  Text Text.  \citealp{Boffelli03} might want to know about  text text text text
-
-
-Text Text Text Text Text Text  Text Text Text Text Text Text Text Text Text  Text Text Text Text Text Text. Figure \ref{fig:02} shows that the above method  Text Text Text Text  Text Text Text Text Text Text  Text Text.  \citealp{Boffelli03} might want to know about  text text text text
-Text Text Text Text Text Text  Text Text Text Text Text Text Text Text Text  Text Text Text Text Text Text. Figure \ref{fig:02} shows that the above method  Text Text Text Text  Text Text Text Text Text Text  Text Text.  \citealp{Boffelli03} might want to know about  text text text text
-Text Text Text Text Text Text  Text Text Text Text Text Text Text Text Text  Text Text Text Text Text Text. Figure \ref{fig:02} shows that the above method  Text Text Text Text  Text Text Text Text Text Text  Text Text.  \citealp{Boffelli03} might want to know about  text text text text
-
-
+All three routines support these matches,
+the queries and data were from the bacteria data set. \citealp{BactXX} 
+We feel they are representative of the kinds of queries of strings into
+genomic information. First the exact queries were broken down by size into
+four selected five groups:  TATAA, Small, Medium, Large and Very Large 
+of randomly selected query data. The reason for an additional 
+small recognized region called the TATAA box was because
+in our test data, Bacteria, it 
+has a large number of recognition sites and is a functional recognition site.  
+Furthermore forward match, reverse match 
+of each of  the queries was performed because in Biology 
+DNA is two stranded with
+matches possible in either direction.
 
 \begin{table}[!t]
-\processtable{This is table caption\label{Tab:01}}
-{\begin{tabular}{llll}\toprule
-head1 & head2 & head3 & head4\\\midrule
-row1 & row1 & row1 & row1\\
-row2 & row2 & row2 & row2\\
-row3 & row3 & row3 & row3\\
-row4 & row4 & row4 & row4\\\botrule
+\processtable{Biopython\label{Tab:01}}
+{\begin{tabular}{ll}\toprule
+Biopython Query & Exact Match Time \\\midrule
+TATAA (5 bases) & 1:44.02 \\
+Small (8 bases) & 1:45.27 \\
+Medium (12 bases)& 1:43.11 \\
+Large (20 bases) & 1:44.54 \\
+VLarge(60 bases) & 1:43.97 \\\botrule
+\end{tabular}}{This is a footnote}
+\end{table}
+
+\begin{table}[!t]
+\processtable{Motility\label{Tab:02}}
+{\begin{tabular}{ll}\toprule
+Motility Query & Exact Match Time \\\midrule
+TATAA (5 bases) & 3.13 \\
+Small (8 bases) & 3.00 \\
+Medium (12 bases)& 2.99 \\
+Large (20 bases) & 2.99 \\
+VLarge (60 bases) & 2.99 \\\botrule
+\end{tabular}}{This is a footnote}
+\end{table}
+
+\begin{table}[!t]
+\processtable{TAMO\label{Tab:03}}
+{\begin{tabular}{ll}\toprule
+TAMO Query & Exact Match Time \\\midrule
+TATAA (5 bases)& 1:28.88 \\
+Small (8 bases)& 2:22.33 \\
+Medium (12 bases)& 3:17.94 \\
+Large (20 bases)& 4:37.30 \\
+VLarge (60 bases)& 12:33.25 \\\botrule
+\end{tabular}}{This is a footnote}
+\end{table}
+
+\begin{table}[!t]
+\processtable{This is table caption\label{Tab:04}}
+{\begin{tabular}{lll}\toprule
+Routine & WGTATA & PAM\\
+Biopython & 97.14 & 39.44\\
+Motility & 3.56 & 3.56 \\
+TAMO & 26.19 & 2:29.99 \\\botrule
 \end{tabular}}{This is a footnote}
 \end{table}
 
 \end{methods}
 
-\begin{figure}[!tpb]%figure1
-%\centerline{\includegraphics{fig01.eps}}
-\caption{Caption, caption.}\label{fig:01}
-\end{figure}
-
-\begin{figure}[!tpb]%figure2
-%\centerline{\includegraphics{fig02.eps}}
-\caption{Caption, caption.}\label{fig:02}
-\end{figure}
-
 \section{Discussion}
-
-Text Text Text Text Text Text  Text Text Text Text Text Text Text Text Text  Text Text Text Text Text Text. Figure \ref{fig:02} shows that the above method  Text Text Text Text  Text Text Text Text Text Text  Text Text.  \citealp{Boffelli03} might want to know about  text text text text
-Text Text Text Text Text Text  Text Text Text Text Text Text Text Text Text  Text Text Text Text Text Text. Figure \ref{fig:02} shows that the above method  Text Text Text Text  Text Text Text Text Text Text  Text Text.  \citealp{Boffelli03} might want to know about  text text text text
-Text Text Text Text Text Text  Text Text Text Text.
-
-
-
-
-Table~\ref{Tab:01} shows that Text Text Text Text Text  Text Text Text Text Text Text. Figure \ref{fig:02} shows that
-the above method Text Text. Text Text Text  Text Text Text Text Text Text. Figure \ref{fig:02} shows that
-the above method Text Text. Text Text Text  Text Text Text Text Text Text. Figure \ref{fig:02} shows that
-the above method Text Text.
-
-
-
-
-
-
-
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%
-%     please remove the " % " symbol from \centerline{\includegraphics{fig01.eps}}
-%     as it may ignore the figures.
-%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-
-
-
+We feel the text and the size of data and queries are very representative 
+of the kinds of ongoing queries in biology. When trying to find
+epigenetic structure in a single small organism's DNA,
+small restriction site cuts or operative regions in the DNA all 
+three routines are adequate.
+If doing a simple exact match a hard coded string search would be fast,
+however Motility is fastest.  
+Biopython and Tamo are slower.
 
 
 \section{Conclusion}
-
-(Table~\ref{Tab:01}) Text Text Text Text Text Text  Text Text Text Text Text Text Text Text Text  Text Text Text Text Text Text. Figure \ref{fig:02} shows that the above method  Text Text Text Text  Text Text Text Text Text Text  Text Text.  \citealp{Boffelli03} might want to know about  text text text text
-Text Text Text Text Text Text  Text Text Text Text Text Text Text Text Text  Text Text Text Text Text Text. Figure \ref{fig:02} shows that the above method  Text Text Text Text  Text Text Text Text Text Text  Text Text.  \citealp{Boffelli03} might want to know about  text text text text
-Text Text Text Text Text Text  Text Text Text Text Text Text Text Text Text  Text Text Text Text Text Text. Figure \ref{fig:02} shows that the above method  Text Text Text Text  Text Text Text Text Text Text  Text Text.
-
-
-
-Text Text Text Text Text Text  Text Text Text Text Text Text Text Text Text  Text Text Text Text Text Text. Figure \ref{fig:02} shows that the above method  Text Text Text Text  Text Text Text Text Text Text  Text Text.  \citealp{Boffelli03} might want to know about  text text text text
-
-
-
-
-
-\begin{enumerate}
-\item this is item, use enumerate
-\item this is item, use enumerate
-\item this is item, use enumerate
-\end{enumerate}
-
-Text Text Text Text Text Text  Text Text Text Text Text Text Text Text Text  Text Text Text Text Text Text. Figure \ref{fig:02} shows that the above method  Text Text Text Text  Text Text Text Text Text Text  Text Text.  \citealp{Boffelli03} might want to know about  text text text text
-Text Text Text Text Text Text  Text Text Text Text Text Text Text Text Text  Text Text Text Text Text Text. Figure \ref{fig:02} shows that the above method  Text Text Text Text  Text Text Text Text Text Text  Text Text.  \citealp{Boffelli03} might want to know about  text text text text
-Text Text Text Text Text Text  Text Text Text Text Text Text Text Text Text  Text Text Text Text Text Text.
-
-
-
-
-
-
-Text Text Text Text Text Text  Text Text Text Text Text Text Text Text Text  Text Text Text Text Text Text. Figure \ref{fig:02} shows that the above method  Text Text Text Text
-
+Our brief software run time comparison shows Motility 
+to be superior in run times and that all software compared
+are capable of doing the searches required for simple DNA comparison.
 
 \section*{Acknowledgement}
-Text Text Text Text Text Text  Text Text.  \citealp{Boffelli03} might want to know about  text text text text
+We would like recognise ???
 
-\paragraph{Funding\textcolon} Text Text Text Text Text Text  Text Text.
+\paragraph{Funding\textcolon} Funding for Philip Trosko was provided by 
+Kay Trosko,
+Titus Brown was provided by XXXXXX, 
+and funding for Eric Macdonald was provided by XXXXXX.
 
 %\bibliographystyle{natbib}
 %\bibliographystyle{achemnat}
@@ -194,34 +181,19 @@ Text Text Text Text Text Text  Text Text.  \citealp{Boffelli03} might want to kn
 
 
 \begin{thebibliography}{}
-\bibitem[Bofelli {\it et~al}., 2000]{Boffelli03} Bofelli,F., Name2, Name3 (2003) Article title, {\it Journal Name}, {\bf 199}, 133-154.
 
-\bibitem[Bag {\it et~al}., 2001]{Bag01} Bag,M., Name2, Name3 (2001) Article title, {\it Journal Name}, {\bf 99}, 33-54.
+\bibitem[Knuth {\it et~al}., 1965]{Knuth65} 
+Knuth,D.(1965) Volume 3, Chapter 6, Searching 
+\textit {The Art of Computer Programming}, pp-pp.
 
-\bibitem[Yoo \textit{et~al}., 2003]{Yoo03}
-Yoo,M.S. \textit{et~al}. (2003) Oxidative stress regulated genes
-in nigral dopaminergic neurnol cell: correlation with the known
-pathology in Parkinson's disease. \textit{Brain Res. Mol. Brain
-Res.}, \textbf{110}(Suppl. 1), 76--84.
+\bibitem[Sankoff and Kruskal., 1965]{Sanko65} 
+Sankoff, X and Kruskal,X.(XXXX), Chapter X, SXXXXXX 
+\textit {Time Warps, String Edits and Macromolecules, The Art and Practice of
+String Comparison}, pp-pp.
 
-\bibitem[Lehmann, 1986]{Leh86}
-Lehmann,E.L. (1986) Chapter title. \textit{Book Title}. Vol.~1, 2nd edn. Springer-Verlag, New York.
-
-\bibitem[Crenshaw and Jones, 2003]{Cre03}
-Crenshaw, B.,III, and Jones, W.B.,Jr (2003) The future of clinical
-cancer management: one tumor, one chip. \textit{Bioinformatics},
-doi:10.1093/bioinformatics/btn000.
-
-\bibitem[Auhtor \textit{et~al}. (2000)]{Aut00}
-Auhtor,A.B. \textit{et~al}. (2000) Chapter title. In Smith, A.C.
-(ed.), \textit{Book Title}, 2nd edn. Publisher, Location, Vol. 1, pp.
-???--???.
-
-\bibitem[Bardet, 1920]{Bar20}
-Bardet, G. (1920) Sur un syndrome d'obesite infantile avec
-polydactylie et retinite pigmentaire (contribution a l'etude des
-formes cliniques de l'obesite hypophysaire). PhD Thesis, name of
-institution, Paris, France.
+\bibitem[Escherichia.,xxxx] {BactXX} Name, X. (xxxx) Escherichia coli, compete genome. 
+% >mg1655 |ref|NC_000913.2| 
+%Escherichia coli str. K-12 substr. MG1655 chromosome, complete genome
 
 \end{thebibliography}
 \end{document}

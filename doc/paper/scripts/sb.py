@@ -11,7 +11,7 @@ from Bio import Motif
 print "This works!"
 
 
-starttime = datetime.datetime.now( )
+sequencestarttime = datetime.datetime.now( )
 sequence = ""
 
 with open ("/u/trosko/projects/data/ecoliMG1655.fa") as indatafile:
@@ -19,9 +19,7 @@ with open ("/u/trosko/projects/data/ecoliMG1655.fa") as indatafile:
 	for line in indatafile:
 		sequence += line.strip()
 	
-endtime = datetime.datetime.now( )
-
-print endtime - starttime
+sequenceendtime = datetime.datetime.now( )
 
 #
 # This is from BioPython
@@ -35,6 +33,8 @@ from Bio.Seq import Seq
 from Bio.Alphabet import IUPAC
 
 starttime = datetime.datetime.now( )
+
+starttimetata = datetime.datetime.now( )
 
 s1 = Motif.Motif(alphabet=IUPAC.unambiguous_dna)
 s1.add_instance(Seq("TATAA",s1.alphabet))
@@ -60,6 +60,8 @@ test_seq=Seq(sequence, s1rc.alphabet)
 for pos,seq in s1rc.search_instances(test_seq):
 	print pos,seq.tostring()
 
+endtimetata = datetime.datetime.now( )
+starttimesmall = datetime.datetime.now( )
 
 s2 = Motif.Motif(alphabet=IUPAC.unambiguous_dna)
 s2.add_instance(Seq("GTTCGGCG",s2.alphabet))
@@ -81,6 +83,8 @@ s2rc.add_instance(Seq("CGCCGAAC",s2rc.alphabet))
 for pos,seq in s2rc.search_instances(test_seq):
 	print pos,seq.tostring()
 
+endtimesmall = datetime.datetime.now( )
+starttimemedium = datetime.datetime.now( )
 
 s12 = Motif.Motif(alphabet=IUPAC.unambiguous_dna)
 s12.add_instance(Seq("TTTTTAAAAAAA",s12.alphabet))
@@ -102,6 +106,8 @@ s12rc.add_instance(Seq("AAAAAAATTTTT",s12rc.alphabet))
 for pos,seq in s12rc.search_instances(test_seq):
 	print pos,seq.tostring()
 
+endtimemedium = datetime.datetime.now( )
+starttimelarge = datetime.datetime.now( )
 #
 # longer matches
 #
@@ -125,6 +131,9 @@ s23rc.add_instance(Seq("GCTGCCCAATATCGTGGTAA",s23rc.alphabet))
 for pos,seq in s23rc.search_instances(test_seq):
 	print pos,seq.tostring()
 
+endtimelarge = datetime.datetime.now( )
+starttimeverylarge = datetime.datetime.now( )
+
 s24 = Motif.Motif(alphabet=IUPAC.unambiguous_dna)
 s24.add_instance(Seq("TAATAATCCAACTAGTTGCATCATACAACTAATAAACGTGGTGAATCCAATTGTCGAGATTTATTTTTTA",s24.alphabet))
 for pos,seq in s24.search_instances(test_seq):
@@ -145,6 +154,14 @@ s24rc.add_instance(Seq("TAAAAAATAAATCTCGACAATTGGATTCACCACGTTTATTAGTTGTATGATGCAAC
 for pos,seq in s24rc.search_instances(test_seq):
 	print pos,seq.tostring()
 
+endtimeverylarge = datetime.datetime.now( )
 endtime = datetime.datetime.now( )
-print endtime - starttime
 
+print sequenceendtime - sequencestarttime
+
+print endtimetata - starttimetata
+print endtimesmall - starttimesmall
+print endtimemedium - starttimemedium
+print endtimelarge - starttimelarge
+print endtimeverylarge - starttimeverylarge
+print endtime - starttime

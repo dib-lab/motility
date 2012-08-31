@@ -2,7 +2,7 @@
 
 import datetime
 
-starttime = datetime.datetime.now( )
+sequencestarttime = datetime.datetime.now( )
 sequence = ""
 
 with open ("/u/trosko/projects/data/ecoliMG1655.fa") as indatafile:
@@ -10,13 +10,12 @@ with open ("/u/trosko/projects/data/ecoliMG1655.fa") as indatafile:
 	for line in indatafile:
 		sequence += line.strip()
 	
-endtime = datetime.datetime.now( )
-
-print endtime - starttime
+sequenceendtime = datetime.datetime.now( )
 
 print "python exact matches!"
 
 starttime = datetime.datetime.now( )
+starttimetata = datetime.datetime.now( )
 
 foundlocations = []
 index = 0 
@@ -60,6 +59,8 @@ while (True) :
 
 print "ATTAA " , foundlocations
 
+endtimetata = datetime.datetime.now( )
+starttimesmall = datetime.datetime.now( )
 
 foundlocations = []
 index = 0 
@@ -105,6 +106,8 @@ while (True) :
 
 print "CGCCGAAC " , foundlocations
 
+endtimesmall = datetime.datetime.now( )
+starttimemedium = datetime.datetime.now( )
 
 foundlocations = []
 index = 0 
@@ -150,6 +153,8 @@ while (True) :
 
 print "TTTTTTTAAAAA " , foundlocations
 
+endtimemedium = datetime.datetime.now( )
+starttimelarge = datetime.datetime.now( )
 
 foundlocations = []
 index = 0 
@@ -193,6 +198,8 @@ while (True) :
 
 print "GCTGCCCAATATCGTGGTAA " , foundlocations
 
+endtimelarge = datetime.datetime.now( )
+starttimeverylarge = datetime.datetime.now( )
 
 foundlocations = []
 index = 0 
@@ -239,9 +246,16 @@ while (True) :
 print "TAAAAAATAAATCTCGACAATTGGATTCACCACGTTTATTAGTTGTATGATGCAACTAGTTGGATTATTA " , foundlocations
 
 
+endtimeverylarge = datetime.datetime.now( )
 
 endtime = datetime.datetime.now( )
-print endtime - starttime
 
 print "python exact matches!"
+print sequenceendtime - sequencestarttime
 
+print endtimetata - starttimetata
+print endtimesmall - starttimesmall
+print endtimemedium - starttimemedium
+print endtimelarge - starttimelarge
+print endtimeverylarge - starttimeverylarge
+print endtime - starttime

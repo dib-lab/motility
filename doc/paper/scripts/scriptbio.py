@@ -11,7 +11,7 @@ from Bio import Motif
 print "This works!"
 
 
-starttime = datetime.datetime.now( )
+sequencestarttime = datetime.datetime.now( )
 sequence = ""
 
 with open ("/u/trosko/projects/data/ecoliMG1655.fa") as indatafile:
@@ -19,9 +19,7 @@ with open ("/u/trosko/projects/data/ecoliMG1655.fa") as indatafile:
 	for line in indatafile:
 		sequence += line.strip()
 	
-endtime = datetime.datetime.now( )
-
-print endtime - starttime
+sequenceendtime = datetime.datetime.now( )
 
 #
 # This is from BioPython
@@ -354,4 +352,5 @@ for pos,seq in s24.search_instances(test_seq):
 	print pos,seq.tostring()
 
 endtime = datetime.datetime.now( )
+print sequenceendtime - sequencestarttime
 print endtime - starttime

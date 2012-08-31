@@ -11,7 +11,7 @@ from TAMO import MotifTools
 print "This works!"
 
 
-starttime = datetime.datetime.now( )
+sequencestarttime = datetime.datetime.now( )
 sequence = ""
 
 with open ("/u/trosko/projects/data/ecoliMG1655.fa") as indatafile:
@@ -19,13 +19,12 @@ with open ("/u/trosko/projects/data/ecoliMG1655.fa") as indatafile:
 	for line in indatafile:
 		sequence += line.strip()
 	
-endtime = datetime.datetime.now( )
-
-print endtime - starttime
+sequenceendtime = datetime.datetime.now( )
 
 
 print "tamo exact matches!"
 starttime = datetime.datetime.now( )
+starttimetata = datetime.datetime.now( )
 
 ms1 = MotifTools.Motif_from_text('TATAA')
 print ms1.oneletter
@@ -40,6 +39,8 @@ ms1rc = MotifTools.Motif_from_text('TTATA')
 print ms1rc.oneletter
 print ms1rc.scan(sequence) 
 
+endtimetata = datetime.datetime.now( )
+starttimesmall = datetime.datetime.now( )
 
 ms2= MotifTools.Motif_from_text('GTTCGGCG')
 print ms2.oneletter
@@ -54,6 +55,8 @@ ms2rc= MotifTools.Motif_from_text('CGCCGAAC')
 print ms2rc.oneletter
 print ms2rc.scan(sequence) 
 
+endtimesmall = datetime.datetime.now( )
+starttimemedium = datetime.datetime.now( )
 ms12= MotifTools.Motif_from_text('TTTTTAAAAAAA')
 print ms12.oneletter
 print ms12.scan(sequence) 
@@ -67,6 +70,8 @@ ms12rc= MotifTools.Motif_from_text('AAAAAAATTTTT')
 print ms12rc.oneletter
 print ms12rc.scan(sequence) 
 
+endtimemedium = datetime.datetime.now( )
+starttimelarge = datetime.datetime.now( )
 ms23= MotifTools.Motif_from_text('TTACCACGATATTGGGCAGC')
 print ms23.oneletter
 print ms23.scan(sequence) 
@@ -79,6 +84,8 @@ print ms23r.scan(sequence)
 ms23rc= MotifTools.Motif_from_text('GCTGCCCAATATCGTGGTAA')
 print ms23rc.oneletter
 print ms23rc.scan(sequence) 
+endtimelarge = datetime.datetime.now( )
+starttimeverylarge = datetime.datetime.now( )
 
 ms24= MotifTools.Motif_from_text('TAATAATCCAACTAGTTGCATCATACAACTAATAAACGTGGTGAATCCAATTGTCGAGATTTATTTTTTA')
 print ms24.oneletter
@@ -92,8 +99,16 @@ print ms24r.scan(sequence)
 ms24rc= MotifTools.Motif_from_text('TAAAAAATAAATCTCGACAATTGGATTCACCACGTTTATTAGTTGTATGATGCAACTAGTTGGATTATTA')
 print ms24rc.oneletter
 print ms24rc.scan(sequence) 
+endtimeverylarge = datetime.datetime.now( )
 
 endtime = datetime.datetime.now( )
-print endtime - starttime
 
 print "end TAMO exact matches!"
+print sequenceendtime - sequencestarttime
+
+print endtimetata - starttimetata
+print endtimesmall - starttimesmall
+print endtimemedium - starttimemedium
+print endtimelarge - starttimelarge
+print endtimeverylarge - starttimeverylarge
+print endtime - starttime
